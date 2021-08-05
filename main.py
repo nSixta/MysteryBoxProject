@@ -19,6 +19,9 @@ def pickWeapon(box, weapon_summary):
         if decision == "1":
             weapon = random.choice(box)
             print(weapon[0:-2])
+            if weapon == primary_weapon or weapon == secondary_weapon or weapon == tactical_granade:
+                weapon = random.choice(box)
+                print(weapon[0:-2])
             if weapon[-1] == "1":
                 switchWeapon = input("Enter 5 to switch primary weapons, 6 for secondary weapon, 7 to not switch: ")
                 if switchWeapon == "5":

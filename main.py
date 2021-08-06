@@ -7,9 +7,16 @@ def pickWeapon(box, weapon_summary):
     tactical_granade = ""
     number = input("Enter number here: ")
     if number == "1":
-        weapon = random.choice(box)
-        print(weapon[0:-2])
-        secondary_weapon = weapon[0:-2]
+        weapon = random.choice(list(box.keys()))
+        typeOfWeapon = box[weapon]
+        print(weapon)
+        if weapon == primary_weapon or weapon == secondary_weapon or weapon == tactical_granade:
+            weapon = random.choice(box)
+            print(weapon)
+        if typeOfWeapon == 1:
+            secondary_weapon = weapon
+        else:
+            tactical_granade = weapon
         print("\nPrimary Weapon: " + primary_weapon)
         print("Secondary Weapon: " + secondary_weapon)
         print("Tactical Weapon: " + tactical_granade)
@@ -17,29 +24,30 @@ def pickWeapon(box, weapon_summary):
     while keep_going:
         decision = input("Enter 1 for another weapon or press 0 to stop: ")
         if decision == "1":
-            weapon = random.choice(box)
-            print(weapon[0:-2])
+            weapon = random.choice(list(box.keys()))
+            typeOfWeapon = box[weapon]
+            print(weapon)
             if weapon == primary_weapon or weapon == secondary_weapon or weapon == tactical_granade:
                 weapon = random.choice(box)
-                print(weapon[0:-2])
-            if weapon[-1] == "1":
+                print(weapon)
+            if typeOfWeapon == 1:
                 switchWeapon = input("Enter 5 to switch primary weapons, 6 for secondary weapon, 7 to not switch: ")
                 if switchWeapon == "5":
-                    primary_weapon = weapon[0:-2]
+                    primary_weapon = weapon
                 if switchWeapon == "6":
-                    secondary_weapon = weapon[0:-2]
+                    secondary_weapon = weapon
                 if switchWeapon == "7":
                     continue
-            elif weapon[-1] == "2":
+            elif typeOfWeapon == 2:
                 if tactical_granade == "":
-                    tactical_granade = weapon[0:-2]
+                    tactical_granade = weapon
                 else:
                     switchTactical = input("Enter 8 to switch Tactical Grenade, 9 to not switch: ")
                     if switchTactical == "8":
-                        tactical_granade = weapon[0:-2]
+                        tactical_granade = weapon
                     if tactical_granade == "9":
                         continue
-            weapon_summary.append(weapon[0:-2])
+            weapon_summary.append(weapon)
             print("\nPrimary Weapon: " + primary_weapon)
             print("Secondary Weapon: " + secondary_weapon)
             print("Tactical Weapon: " + tactical_granade)
@@ -59,10 +67,14 @@ def startUp(box, weapon_summary):
 
 
 def main():
-    box = ["31-79 JGb215-1", "AUG-1", "Ballistic Knife-1", "China Lake-1", "Commando-1", "Crossbow-1", "CZ75-1", "CZ75 Dual Wield-1",
-           "Dragunov-1", "Famas-1", "FN FAL-1", "G11-1", "Galil-1", "Gersh Device-2", "HS-10-1", "HK21-1", "L96A1-1", "M72 Law-1",
-           "Matryoshka Doll-2", "Monkey Bomb-2", "Python-1", "Quantum Entanglement Device-2", "Ray Gun-1", "RPK-1", "Scavenger-1",
-           "SPAS-12-1", "Thundergun-1", "V-R11-1", "Winter's Howl-1", "Wave Gun-1", "Wunderwaffe DG-2-1"]
+    box = {"31-79 JGb215": 1, "AUG": 1, "Ballistic Knife": 1, "China Lake": 1, "Commando": 1, "Crossbow": 1,
+           "CZ75": 1, "CZ75 Dual Wield": 1,
+           "Dragunov": 1, "Famas": 1, "FN FAL": 1, "G11": 1, "Galil": 1, "Gersh Device": 2, "HS-10": 1,
+           "HK21": 1, "L96A1": 1, "M72 Law": 1,
+           "Matryoshka Doll": 2, "Monkey Bomb": 2, "Python": 1, "Quantum Entanglement Device": 2,
+           "Ray Gun": 1, "RPK": 1, "Scavenger": 1,
+           "SPAS-12": 1, "Thundergun": 1, "V-R11": 1, "Winter's Howl": 1, "Wave Gun": 1,
+           "Wunderwaffe DG-2": 1}
     weapon_summary = []
     startUp(box, weapon_summary)
 

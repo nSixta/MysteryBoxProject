@@ -1,6 +1,12 @@
 import random
 
 
+def showCurrentWeapons(primary_weapon, secondary_weapon, tactical_granade):
+    print("\nPrimary Weapon: " + primary_weapon)
+    print("Secondary Weapon: " + secondary_weapon)
+    print("Tactical Weapon: " + tactical_granade)
+
+
 def pickWeapon(box, weapon_summary):
     primary_weapon = "M1911"
     secondary_weapon = ""
@@ -17,9 +23,7 @@ def pickWeapon(box, weapon_summary):
             secondary_weapon = weapon
         else:
             tactical_granade = weapon
-        print("\nPrimary Weapon: " + primary_weapon)
-        print("Secondary Weapon: " + secondary_weapon)
-        print("Tactical Weapon: " + tactical_granade)
+        showCurrentWeapons(primary_weapon, secondary_weapon, tactical_granade)
     keep_going = True
     while keep_going:
         decision = input("Enter 1 for another weapon or press 0 to stop: ")
@@ -48,9 +52,7 @@ def pickWeapon(box, weapon_summary):
                     if tactical_granade == "9":
                         continue
             weapon_summary.append(weapon)
-            print("\nPrimary Weapon: " + primary_weapon)
-            print("Secondary Weapon: " + secondary_weapon)
-            print("Tactical Weapon: " + tactical_granade)
+            showCurrentWeapons(primary_weapon, secondary_weapon, tactical_granade)
         elif decision == "0":
             print("Thanks for Playing")
             keep_going = False

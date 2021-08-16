@@ -11,8 +11,13 @@ def pickWeapon(box, weapon_summary):
     primary_weapon = "M1911"
     secondary_weapon = ""
     tactical_granade = ""
-    number = input("Enter number here: ")
-    if number == "1":
+    start_decision = input("Enter here: ")
+    if start_decision == "show box":
+        box_file = open("box.txt", "r")
+        if box_file.readable():
+            print(box_file.read())
+            box_file.close()
+    elif start_decision == "1":
         weapon = random.choice(list(box.keys()))
         typeOfWeapon = box[weapon]
         print(weapon)
@@ -21,6 +26,7 @@ def pickWeapon(box, weapon_summary):
             print(weapon)
         if typeOfWeapon == 1:
             secondary_weapon = weapon
+            weapon_summary.append(weapon)
         else:
             tactical_granade = weapon
         showCurrentWeapons(primary_weapon, secondary_weapon, tactical_granade)
@@ -64,7 +70,8 @@ def pickWeapon(box, weapon_summary):
 
 def startUp(box, weapon_summary):
     print("Welcome to Mystery Box")
-    print("Enter 1 for random weapon from the mystery box")
+    print(
+        "Enter 1 for random weapon from the mystery box\n" + "If you want to see what is in the box, enter \"show box\"")
     pickWeapon(box, weapon_summary)
 
 
